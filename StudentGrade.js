@@ -7,49 +7,42 @@ schoolName = `
   `;
 console.log(schoolName)
 
-let student = prompt("Enter number of students:")
-let subject = prompt("Enter number of subject offered:")
+let student = Number(prompt("Enter number of students:"))
+let subject = Number(prompt("Enter number of subject offered:"))
 console.log("Saving>>>>>>>>>>>>>>>>>>>>")
 console.log("Saved successfully")
 
+let scores = [];
 
+console.log("Saving>>>>>>>>>>>>>>>>");
+console.log("Saved Successfully");
 
-for(let index = 0; index < student; index++){
-    for(let count = 0; count < subject; count++){
-    
-let score = prompt(`Enter score for student ${index + 1} subject ${count + 1}:`)
-console.log("Saving>>>>>>>>>>>>>>>>>>>>");
-console.log("Saved successfully");
+for (let index = 0; index < student; index++) {
+    scores[index] = [];
+for (let count = 0; count < subject; count++) {
 
-if (score < 0 && score > 100){
-console.log("Invalid score! Enter a score from 0-100");
-        } 
+let score = Number(prompt(`Enter score for student ${index + 1} subject ${count + 1}:`));
+
+if (score < 0 || score > 100) {
+    console.log("Invalid score! Enter a score from 0-100");
+    count--;
+    continue;
 }
+scores[index][count] = score;
+console.log("Saving>>>>>>>>>>>>>>>>");
+console.log("Saved Successfully");
+    }
 }
 
 console.log("========== CLASS SUMMARY ==========");
 
-total = [student.length];
-average = [student.length]; 
-
-for(let totals = 0; totals < student.length; totals++){
-let sum = 0;
-//let divide = 0;
-
-    for(let averages = 0; averages < student[totals].length; averages++){
-    sum += student[totals][averages];
+for (let students = 0; students < student; students++) {
+    let total = 0;
+for (let subjects = 0; subjects < subject; subjects++) {
+    total = total + scores[students][subjects];
 }
-total[totals] = sum;
-//for (let counter = 0; counter < student.length; counter++) {
-//    divide = sum / student.length;
-//  }
-  average[totals] = sum / student[totals].length;
-  
-  console.log("Total:" + total[totals]);
-console.log("Average" + average[totals]);
-
-    
+let average = total / subject;
+console.log(`Total score for student ${students + 1}: ${total}`);
+console.log(`Average score for student ${students + 1}: ${average}`);
 }
-
-
 
